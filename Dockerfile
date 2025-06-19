@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 RUN apt update
 
-RUN apt install php openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip sqlite3 php-sqlite3 -y
+RUN apt install php openssl nodejs npm php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip sqlite3 php-sqlite3 -y
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
@@ -32,6 +32,8 @@ RUN php artisan migrate:fresh --seed
 RUN chmod -R 777 ./storage
 
 RUN php artisan storage:link
+
+RUN npm i && npm run build
 
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
 
