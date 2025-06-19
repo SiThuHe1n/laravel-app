@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -12,11 +13,10 @@ class MainController extends Controller
             'file' => 'required|file|max:2048', // max 2MB
         ]);
 
-        $file = $request->file('file');
-        // $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $request->file('file')->store("public");
-        // $file->move(public_path('uploads'), $filename);
+        $path = Storage::disk('minio')->put('uploads', $request->file('file'));
 
+        $url = Storage::disk('minio')->url($path);
+        // return $url;
         return back()->with('success', 'File uploaded successfully.');
     }
 }
