@@ -11,7 +11,23 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in! I AM OK") }}
 
-                    
+                    <form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="file">
+                        <button type="submit">Upload</button>
+                    </form>
+
+                    @php
+                        // $files = scandir(asset('uploads/'));
+
+                        // foreach ($files as $file) {
+                        //     if ($file !== '.' && $file !== '..') {
+                        //         echo $file . '<br>';
+                        //     }
+                        // }
+
+                    @endphp
+
                 </div>
             </div>
         </div>
