@@ -4,6 +4,11 @@ RUN apt update
 
 RUN apt install php openssl nodejs npm php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip  -y
 
+RUN echo "upload_max_filesize = 100M" >> /etc/php/*/fpm/php.ini \
+ && echo "post_max_size = 100M" >> /etc/php/*/fpm/php.ini \
+ && echo "upload_max_filesize = 100M" >> /etc/php/*/cli/php.ini \
+ && echo "post_max_size = 100M" >> /etc/php/*/cli/php.ini
+ 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
 RUN php composer-setup.php
