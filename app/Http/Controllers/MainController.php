@@ -10,7 +10,7 @@ class MainController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|max:2048', // max 2MB
+            'file' => 'required|file', // max 2MB
         ]);
 
         $path = Storage::disk('minio')->put('uploads', $request->file('file'));
