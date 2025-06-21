@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 RUN apt update
 
-RUN apt install php openssl nodejs npm php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip sqlite3 php-sqlite3 -y
+RUN apt install php openssl nodejs npm php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip  -y
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
